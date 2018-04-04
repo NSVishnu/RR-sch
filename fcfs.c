@@ -1,4 +1,4 @@
-# fcfs
+// fcfs
 #include<stdio.h>
 #include<conio.h>
 void findWaitingTime(int processes[], int n, int bt[],int wt[], int at[])
