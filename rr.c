@@ -28,7 +28,82 @@ main()
     }
     printf("Enter quantum:\n");
     scanf("%d",&qt);
+    
     for(i=0;i<n;i++)
     {
-       
- 
+        for(j=i+1;j<n;j++)
+        {
+            if(Q[i].at>Q[j].at)
+            {
+                temp=Q[i];
+                Q[i]=Q[j];
+                Q[j]=temp;
+            }
+		}
+	}
+	for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(Q[i].at==Q[j].at)
+            {
+                if(Q[i].pr<Q[j].pr)
+				{
+				temp=Q[i];
+                Q[i]=Q[j];
+                Q[j]=temp;
+            	}
+            }
+		}
+	}
+	
+    for(i=0;i<n;i++)
+    {
+        Q[i].rem=Q[i].bt;
+        Q[i].ft=0;
+    }
+    tt=0;
+    q=0;
+    rr[q]=0;
+    do
+    {
+        for(j=0;j<n;j++)
+        if(tt>=Q[j].at)
+        {
+            x=0;
+            for(k=0;k<=q;k++)
+            if(rr[k]==j)
+            x++;
+            if(x==0)
+            {
+                q++;
+                rr[q]=j;
+            }
+        }
+        if(q==0)
+        i=0;
+        if(Q[i].rem==0)
+        i++;
+        if(i>q)
+        i=(i-1)%q;
+        if(i<=q)
+        {
+            if(Q[i].rem>0)
+            {
+                if(Q[i].rem<qt)
+                {
+                    tt+=Q[i].rem;
+                    Q[i].rem=0;
+                }
+                else
+                {
+                    tt+=qt;
+                    Q[i].rem-=qt;
+                }
+                Q[i].ft=tt;
+            }
+            i++;
+        }
+        flag=0;
+        for(j=0;j<n;j++)
+        if(Q[j].rem>0)
