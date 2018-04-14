@@ -33,7 +33,7 @@ main()
     {
         for(j=i+1;j<n;j++)
         {
-            if(Q[i].at>Q[j].at)
+            if(Q[i].at<Q[j].at)
             {
                 temp=Q[i];
                 Q[i]=Q[j];
@@ -107,3 +107,29 @@ main()
         flag=0;
         for(j=0;j<n;j++)
         if(Q[j].rem>0)
+        flag++;
+    }while(flag!=0);
+    
+    printf("\n\n\t\t\t       ROUND ROBIN ALGORITHM");
+    printf("\n\t*******************************************************************");
+    printf("\n\t*******************************************************************");
+	printf("\n\tprocesses || Arrival time || burst time || finish time || tat || wt ");
+    for(f=0;f<n;f++)
+    {
+        wt=Q[f].ft-Q[f].bt-Q[f].at;
+        Q[f].tat=Q[f].ft-Q[f].at;
+        Q[f].ntat=(float)Q[f].tat/Q[f].bt;
+        atat+=Q[f].tat;
+        awt+=wt;
+    printf("\n\t  %s              %d               %d               %d         %d     %d ",
+        Q[f].na,Q[f].at,Q[f].bt,Q[f].ft,Q[f].tat,wt);
+    }
+    printf("\n\t*******************************************************************");
+    printf("\n\t*******************************************************************");
+	antat/=n;
+    atat/=n;
+    awt/=n;
+    printf("\n\n\nAverage Turn around time is %f",atat);
+    printf("\n\n\nAverage waiting time is %f",awt);
+   }
+ 
